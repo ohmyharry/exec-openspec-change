@@ -1,6 +1,6 @@
 ---
 name: execute-openspec-change
-description: Execute an OpenSpec change through the complete automated workflow: design check → plan → worktree → subagent → review → test → merge. Triggered by phrases like "执行 add-subagent", "帮我完成 fix-permission", "/exec <change-id>", or "/execute <change-id>". Do NOT use for applying spec deltas - use openspec:apply for that.
+description: "Execute an OpenSpec change through the complete automated workflow: design check → plan → worktree → subagent → review → test → merge. Triggered by phrases like /execute or /exec."
 ---
 
 # OpenSpec Execute Change
