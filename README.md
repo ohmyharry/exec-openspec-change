@@ -15,6 +15,22 @@ An automated execution workflow skill for OpenSpec proposals/changes. It orchest
 - **测试验证** - 自动化测试和验证
 - **合并决策** - 提供详细的合并前报告
 
+## 前置条件 / Prerequisites
+
+**本 skill 依赖 OpenSpec 工作流，需要提前设置好 OpenSpec 项目结构。**
+
+确保你的项目包含：
+```
+openspec/
+├── changes/
+│   ├── <change-id>/
+│   │   ├── proposal.md      # 变更提案
+│   │   ├── design.md        # 设计文档（可选）
+│   │   └── tasks.md         # 任务列表
+```
+
+如果你的项目还没有设置 OpenSpec，请先创建相应的目录结构和提案文档。
+
 ## 使用方法 / Usage
 
 ### 触发方式 / Trigger Patterns
@@ -44,6 +60,38 @@ An automated execution workflow skill for OpenSpec proposals/changes. It orchest
 /status                           # 查看所有活跃工作树
 /status <change-id>               # 查看特定变更进度
 /status --all                     # 包含已完成的
+```
+
+## 使用技巧 / Tips
+
+### 批量执行多个变更
+
+当有多个独立的变更需要执行时，可以：
+
+1. **拆分需求** - 将大型需求文档拆分成多个并列的 proposal
+2. **多窗口执行** - 在多个 Claude Code 窗口中同时执行不同的变更
+3. **并行开发** - 利用 git worktree 的隔离特性，安全地并行开发
+
+示例场景：
+```bash
+# 窗口 1: /execute add-user-auth
+# 窗口 2: /execute add-rate-limiting
+# 窗口 3: /execute add-logging
+```
+
+每个变更会在独立的 worktree 中执行，互不干扰。
+
+### 冲突检测
+
+本 skill 会自动检测文件级别的冲突。如果多个变更修改了相同的文件，会在执行前发出警告。
+
+### 依赖管理
+
+对于有依赖关系的变更，可以在 proposal.md 中声明依赖关系：
+```markdown
+## Dependencies
+- depends_on: base-infrastructure-update
+- blocks: feature-implementation
 ```
 
 ## 工作流程 / Workflow
