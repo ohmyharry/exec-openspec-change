@@ -99,14 +99,27 @@ PENDING → DESIGNING → PLANNING → EXECUTING → REVIEWING → TESTING → R
 
 ## 安装 / Installation
 
-1. Clone 此仓库到你的 Claude Code skills 目录：
+### 方式 1：使用 skills.sh CLI（推荐）
+
+```bash
+npx skills add ohmyharry/exec-openspec-change
+```
+
+这会自动安装到支持的 agents（Claude Code、Cursor、Windsurf 等）。
+
+### 方式 2：手动安装
+
+1. Clone 此仓库：
    ```bash
-   git clone https://github.com/ohmyharry/exec-openspec-change.git ~/.claude/skills/exec-openspec-change
+   git clone https://github.com/ohmyharry/exec-openspec-change.git
    ```
 
-2. 确保 SKILL.md 在正确的位置
+2. 将 SKILL.md 复制到你的 agent skills 目录：
+   - **Claude Code**: `~/.claude/skills/execute-openspec-change/`
+   - **Cursor**: `~/.cursor/skills/execute-openspec-change/`
+   - **Windsurf**: `~/.windsurf/skills/execute-openspec-change/`
 
-3. 重启 Claude Code
+3. 重启你的 AI agent
 
 ## 贡献 / Contributing
 
